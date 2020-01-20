@@ -5,6 +5,8 @@ import sourcemaps from 'gulp-sourcemaps';
 import cleanCSS from 'gulp-clean-css';
 import postcss from 'gulp-postcss';
 import autoprefixer from 'autoprefixer';
+import concat from 'gulp-concat';
+import babel from 'gulp-babel';
 
 const server = browserSync.create();
 
@@ -25,6 +27,17 @@ gulp.task('sass', (done) => {
         .pipe(gulp.dest('dist/css'))
 
     //done();
+});
+
+gulp.task('scripts', (done) => {
+    gulp.src([
+        './src/js/index.js',
+    ])
+    .pipe(concat('bundle.js'))
+    .pipe(babel()) // IE9 testing purposes
+    .pipe(gulp.dest('dist/js'));
+
+    done();
 });
 
 gulp.task('serve', (done) => {
@@ -55,12 +68,16 @@ gulp.task('watch', (done) => {
     .on('change', change)
     .on('unlink', unlink);
 
+    gulp.watch('src/js/*.js', gulp.parallel('scripts'))
+    .on('change', change)
+    .on('unlink', unlink);
+
     gulp.watch('index.html', gulp.parallel('markup'))
     .on('change', change)
     .on('unlink', unlink);
 
 });
 
-gulp.task('build', gulp.parallel('markup', 'sass'));
+gulp.task('build', gulp.parallel('markup', 'sass', 'scripts'));
 
 gulp.task('default', gulp.series('build', gulp.parallel('watch', 'serve')));

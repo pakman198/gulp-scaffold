@@ -4,7 +4,8 @@
   "description": "Static website setup",
   "main": "index.js",
   "scripts": {
-    "start": "./node_modules/.bin/gulp"
+    "start": "gulp",
+    "gulp:scripts": "gulp scripts"
   },
   "keywords": [
     "gulp",
@@ -14,21 +15,23 @@
   "author": "Jose Francisco Herrera",
   "license": "ISC",
   "devDependencies": {
-    "autoprefixer": "^9.0.2",
-    "babel-preset-es2015": "^6.24.1",
-    "babel-register": "^6.26.0",
-    "browser-sync": "^2.24.6",
-    "gulp": "^4.0.0",
-    "gulp-clean-css": "^3.9.4",
+    "@babel/core": "^7.8.3",
+    "@babel/preset-env": "^7.8.3",
+    "@babel/register": "^7.8.3",
+    "autoprefixer": "^9.7.4",
+    "browser-sync": "^2.26.7",
+    "gulp": "^4.0.2",
+    "gulp-babel": "^8.0.0",
+    "gulp-clean-css": "^3.10.0",
     "gulp-concat": "^2.6.1",
     "gulp-postcss": "^7.0.1",
-    "gulp-sass": "^4.0.1",
-    "gulp-sourcemaps": "^2.6.4",
-    "popper.js": "^1.14.3"
+    "gulp-sass": "^4.0.2",
+    "gulp-sourcemaps": "^2.6.5",
+    "popper.js": "^1.16.0"
   },
   "dependencies": {
-    "bootstrap": "^4.1.3",
-    "jquery": "^3.3.1"
+    "bootstrap": "^4.4.1",
+    "jquery": "^3.4.1"
   },
   "browserslist": [
     "last 2 versions",
